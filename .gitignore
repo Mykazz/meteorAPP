@@ -2,15 +2,19 @@
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
-.packages
-.pub-cache/
 **/build/
+.pub-cache/
 .melos_tool/
 
-# IDEs
+# IDE
 .idea/
 .vscode/
 *.iml
 
-# Platform-specific (safe)
+# Android/Gradle caches
 android/.gradle/
+
+# Artifacts we must never commit
+*.apk
+*.aab
+*.ipa
