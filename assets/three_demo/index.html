@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Three.js in Flutter WebView</title>
+  <style>
+    html,body { margin:0; height:100%; overflow:hidden; }
+    #app { width:100vw; height:100vh; display:block; }
+  </style>
+</head>
+<body>
+  <canvas id="app"></canvas>
+
+  <!-- Import map: resolve "three" to the local ES module -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./three/three.module.js"
+    }
+  }
+  </script>
+
+  <!-- Load your app as a module -->
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
