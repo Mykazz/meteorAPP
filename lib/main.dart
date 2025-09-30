@@ -5,10 +5,6 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  // ---- Verify assets are in the bundle (one-time debug) --
-
-  // ---- Local HTTP server (serve exactly the same logical asset root) -------
   final server = InAppLocalhostServer(
     documentRoot:
         'assets/three_demo', // must match pubspec asset key (case-sensitive)
