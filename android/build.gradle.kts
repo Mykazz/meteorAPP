@@ -2,6 +2,7 @@
 
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+
 allprojects {
     repositories {
         google()
@@ -28,7 +29,7 @@ subprojects {
         sourceCompatibility = JavaVersion.VERSION_17.toString()
         targetCompatibility = JavaVersion.VERSION_17.toString()
         // Optional extra diagnostics:
-        // options.compilerArgs.addAll(listOf("-Xlint:deprecation", "-Xlint:unchecked"))
+         // options.compilerArgs.addAll(listOf("-Xlint:deprecation", "-Xlint:unchecked"))
         // To silence "obsolete options" warnings (not recommended):
         // options.compilerArgs.add("-Xlint:-options")
     }
@@ -36,7 +37,27 @@ subprojects {
     tasks.withType<KotlinCompile>().configureEach {
         kotlinOptions.jvmTarget = "17"
     }
+
+    
 }
+
+
+
+ gradle.projectsEvaluated {
+     subprojects {
+         tasks.withType<JavaCompile>().configureEach {
+            doFirst { println(">>> ...") }
+         }
+         tasks.withType<KotlinCompile>().configureEach {
+             doFirst { println(">>> ...") }
+         }
+    }
+ }
+
+
+
+
+
 
 // clean task (unchanged)
 tasks.register<Delete>("clean") {
