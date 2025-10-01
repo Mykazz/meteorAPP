@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Cesium 1.133 UMD Full Example</title>
+  <style>
+    html,body,#cesiumContainer {
+      width:100%;
+      height:100%;
+      margin:0;
+      background:#000;
+    }
+  </style>
+
+  <!-- Load Cesium JS + CSS -->
+  <script src="/cesium_demo/Cesium/Cesium.js?v=5"></script>
+  <link rel="stylesheet" href="/cesium_demo/Cesium/Widgets/widgets.css?v=5"/>
+</head>
+<body>
+  <div id="cesiumContainer"></div>
+  <script>
+    // Tell Cesium where to find its Assets/Workers/Widgets
+    window.CESIUM_BASE_URL = '/cesium_demo/Cesium/';
+
+    // Initialize viewer with full UI and textures
+    const viewer = new Cesium.Viewer('cesiumContainer', {
+      terrain: new Cesium.EllipsoidTerrainProvider(), // no Ion token needed
+      imageryProvider: new Cesium.UrlTemplateImageryProvider({
+        url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+        credit: '© OpenStreetMap contributors'
+      }),
+      baseLayerPicker: false
+    });
+
+    // Add skybox, sun, moon back (these need Assets/Textures/)
+    viewer.scene.skyBox = new Cesium.SkyBox({
+      sources: {
+        positiveX: Cesium.buildModuleUrl('Assets/Textures/SkyBox/tycho2t3_80_px.jpg'),
+        negativeX: Cesium.buildModuleUrl('Assets/Textures/SkyBox/tycho2t3_80_mx.jpg'),
+        positiveY: Cesium.buildModuleUrl('Assets/Textures/SkyBox/tycho2t3_80_py.jpg'),
+        negativeY: Cesium.buildModuleUrl('Assets/Textures/SkyBox/tycho2t3_80_my.jpg'),
+        positiveZ: Cesium.buildModuleUrl('Assets/Textures/SkyBox/tycho2t3_80_pz.jpg'),
+        negativeZ: Cesium.buildModuleUrl('Assets/Textures/SkyBox/tycho2t3_80_mz.jpg')
+      }
+    });
+    viewer.scene.sun = new Cesium.Sun();
+    viewer.scene.moon = new Cesium.Moon({
+      textureUrl: Cesium.buildModuleUrl('Assets/Textures/moonSmall.jpg')
+    });
+
+    // Add a marker (Vilnius, Lithuania example)
+    const pt = viewer.entities.add({
+      position: Cesium.Cartesian3.fromDegrees(25.2797, 54.6872),
+      point: { pixelSize: 12, color: Cesium.Color.RED },
+      description: 'Marker at Vilnius'
+    });
+    viewer.zoomTo(pt);
+
+    console.log('Cesium fully ready with skybox, sun, moon, textures');
+  </script>
+</body>
+</html>

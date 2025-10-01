@@ -17,7 +17,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
       body: SafeArea(
         child: InAppWebView(
           initialUrlRequest: URLRequest(
-            url: WebUri('http://localhost:8080/index.html'),
+            url: WebUri('http://localhost:8080/three_demo/index.html'),
           ),
           initialSettings: InAppWebViewSettings(
             javaScriptEnabled: true,

@@ -17,10 +17,26 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^5.0.0
 
+
 flutter:
   uses-material-design: true
   assets:
+    # three.js demo
     - assets/three_demo/
     - assets/three_demo/controls/OrbitControls.js
     - assets/three_demo/three/three.module.js
     - assets/three_demo/three/three.core.js
+
+    # Cesium demo
+    - assets/cesium_demo/cesium.html
+    - assets/cesium_demo/Cesium/
+    - assets/cesium_demo/Cesium/Assets/
+    - assets/cesium_demo/Cesium/Widgets/
+    - assets/cesium_demo/Cesium/Workers/
+    - assets/cesium_demo/Cesium/Assets/IAU2006_XYS/
+    - assets/cesium_demo/Cesium/Assets/Images/
+    - assets/cesium_demo/Cesium/Assets/Textures/
+    - assets/cesium_demo/Cesium/Assets/Textures/SkyBox/
+    - assets/cesium_demo/Cesium/Widgets/InfoBox/
+
+    # Additional Cesium assets (recommended)

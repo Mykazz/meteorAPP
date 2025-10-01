@@ -5,10 +5,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final server = InAppLocalhostServer(
-    documentRoot: 'assets/three_demo',
-    port: 8080,
-  );
+  final server = InAppLocalhostServer(documentRoot: 'assets', port: 8080);
   await server.start();
   runApp(const MyApp());
 }
