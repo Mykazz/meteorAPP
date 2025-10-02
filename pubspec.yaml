@@ -38,5 +38,9 @@ flutter:
     - assets/cesium_demo/Cesium/Assets/Textures/
     - assets/cesium_demo/Cesium/Assets/Textures/SkyBox/
     - assets/cesium_demo/Cesium/Widgets/InfoBox/
+    - assets/cesium_demo/Cesium/Widgets/Images/NavigationHelp/
+    - assets/cesium_demo/Cesium/Widgets/Images/TerrainProviders/
+    - assets/cesium_demo/Cesium/Widgets/Images/ImageryProviders/
+    - assets/cesium_demo/Cesium/Assets/Textures/NaturalEarthII/
 
     # Additional Cesium assets (recommended)

@@ -3,61 +3,59 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Cesium 1.133 UMD Full Example</title>
+  <title>Cesium 1.133 UMD + Ion Example</title>
   <style>
-    html,body,#cesiumContainer {
-      width:100%;
-      height:100%;
-      margin:0;
-      background:#000;
+    html, body, #cesiumContainer {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      background: #000;
+      overflow: hidden;
     }
   </style>
 
   <!-- Load Cesium JS + CSS -->
-  <script src="/cesium_demo/Cesium/Cesium.js?v=5"></script>
-  <link rel="stylesheet" href="/cesium_demo/Cesium/Widgets/widgets.css?v=5"/>
+  <script src="/cesium_demo/Cesium/Cesium.js?v=7"></script>
+  <link rel="stylesheet" href="/cesium_demo/Cesium/Widgets/widgets.css?v=7"/>
+  <link rel="icon" href="/favicon.ico"/> <!-- dummy icon to silence errors -->
 </head>
 <body>
   <div id="cesiumContainer"></div>
+
   <script>
     // Tell Cesium where to find its Assets/Workers/Widgets
     window.CESIUM_BASE_URL = '/cesium_demo/Cesium/';
 
-    // Initialize viewer with full UI and textures
-    const viewer = new Cesium.Viewer('cesiumContainer', {
-      terrain: new Cesium.EllipsoidTerrainProvider(), // no Ion token needed
-      imageryProvider: new Cesium.UrlTemplateImageryProvider({
-        url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-        credit: '© OpenStreetMap contributors'
-      }),
-      baseLayerPicker: false
-    });
+    // ✅ Add your Ion token
+    Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5OTFmNzk5Yy1hZDI4LTQ4Y2YtOTk4Mi04MDZjNTU5YzU5MTEiLCJpZCI6MzQ2MzkwLCJpYXQiOjE3NTkzNDMzOTN9.XhBY_TVTLCPJ9FHiPVMVBqdaH5YIiC48VfynwJM6vi8";
 
-    // Add skybox, sun, moon back (these need Assets/Textures/)
-    viewer.scene.skyBox = new Cesium.SkyBox({
-      sources: {
-        positiveX: Cesium.buildModuleUrl('Assets/Textures/SkyBox/tycho2t3_80_px.jpg'),
-        negativeX: Cesium.buildModuleUrl('Assets/Textures/SkyBox/tycho2t3_80_mx.jpg'),
-        positiveY: Cesium.buildModuleUrl('Assets/Textures/SkyBox/tycho2t3_80_py.jpg'),
-        negativeY: Cesium.buildModuleUrl('Assets/Textures/SkyBox/tycho2t3_80_my.jpg'),
-        positiveZ: Cesium.buildModuleUrl('Assets/Textures/SkyBox/tycho2t3_80_pz.jpg'),
-        negativeZ: Cesium.buildModuleUrl('Assets/Textures/SkyBox/tycho2t3_80_mz.jpg')
+    window.onload = function () {
+      try {
+        // Use Cesium Ion terrain + default imagery
+        const viewer = new Cesium.Viewer('cesiumContainer', {
+          terrain: Cesium.Terrain.fromWorldTerrain(),  // ✅ High-res terrain from Cesium Ion
+          imageryProvider: new Cesium.IonImageryProvider({ assetId: 2 }), // ✅ Bing Maps Aerial
+          baseLayerPicker: true,
+          animation: false,
+          timeline: false
+        });
+
+        // Add OSM Buildings layer from Ion
+        viewer.scene.primitives.add(Cesium.createOsmBuildings());
+
+        // Add a marker (Vilnius, Lithuania)
+        const pt = viewer.entities.add({
+          position: Cesium.Cartesian3.fromDegrees(25.2797, 54.6872),
+          point: { pixelSize: 12, color: Cesium.Color.RED },
+          description: "Marker at Vilnius"
+        });
+        viewer.zoomTo(pt);
+
+        console.log("[Cesium] fully ready with Ion terrain + Bing imagery + OSM buildings");
+      } catch (e) {
+        console.error("[Cesium] init failed:", e);
       }
-    });
-    viewer.scene.sun = new Cesium.Sun();
-    viewer.scene.moon = new Cesium.Moon({
-      textureUrl: Cesium.buildModuleUrl('Assets/Textures/moonSmall.jpg')
-    });
-
-    // Add a marker (Vilnius, Lithuania example)
-    const pt = viewer.entities.add({
-      position: Cesium.Cartesian3.fromDegrees(25.2797, 54.6872),
-      point: { pixelSize: 12, color: Cesium.Color.RED },
-      description: 'Marker at Vilnius'
-    });
-    viewer.zoomTo(pt);
-
-    console.log('Cesium fully ready with skybox, sun, moon, textures');
+    };
   </script>
 </body>
 </html>
