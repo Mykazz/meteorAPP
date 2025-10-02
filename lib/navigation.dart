@@ -1,6 +1,8 @@
 // lib/pages/navig.dart
 // ignore_for_file: prefer_const_constructors, file_names
 
+import 'package:asteroidsim/asteroids.dart';
+import 'package:asteroidsim/r3f.dart';
 import 'package:asteroidsim/webview1.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -28,6 +30,12 @@ class _NavigState extends State<Navig> {
       case 1:
         body = const Settings();
         break;
+      case 2:
+        body = const R3F();
+        break;
+      case 3:
+        body = const AsteroidListScreen();
+        break;
       default:
         body = const SizedBox.shrink();
     }
@@ -42,11 +50,13 @@ class _NavigState extends State<Navig> {
         tabBackgroundColor: const Color.fromARGB(255, 204, 221, 243),
         padding: const EdgeInsets.all(16),
         gap: 8,
-        tabMargin: const EdgeInsets.symmetric(horizontal: 50),
+
         mainAxisAlignment: MainAxisAlignment.center,
         tabs: const [
-          GButton(icon: Icons.home, text: 'Home'),
-          GButton(icon: Icons.calendar_month, text: 'Programme'),
+          GButton(icon: Icons.home, text: 'Three'),
+          GButton(icon: Icons.calendar_month, text: 'Cesium'),
+          GButton(icon: Icons.calendar_month, text: 'R3F'),
+          GButton(icon: Icons.numbers, text: 'asteroids'),
         ],
         selectedIndex: _selectedIndex,
         onTabChange: (index) => setState(() => _selectedIndex = index),
