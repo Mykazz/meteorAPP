@@ -3,6 +3,7 @@
 
 import 'package:asteroidsim/asteroids.dart';
 import 'package:asteroidsim/biggest.dart';
+import 'package:asteroidsim/chooseside.dart';
 import 'package:asteroidsim/dramatic.dart';
 import 'package:asteroidsim/r3f.dart';
 import 'package:asteroidsim/terminal.dart';
@@ -32,7 +33,7 @@ class _NavigState extends State<Navig> {
         ;
         break;
       case 1:
-        body = const Settings();
+        body = const ChooseSide();
         break;
       case 2:
         body = const R3F();

@@ -44,12 +44,12 @@ class _InteractiveTerminalState extends State<InteractiveTerminal> {
             "Commands for help",
             " - danger : lists dangerous asteroids",
             " - big    : lists biggest asteroids",
-            " - near    : lists near earth asteroids",
+            " - near   : lists near earth asteroids",
             " - random : lists random asteroids",
             " - mymath : you create your own asteroid",
             " - start  : launch simulation",
             " - help   : show this list",
-            " - story   : go to story mode",
+            " - story  : go to story mode",
           ]);
         });
         break;
@@ -70,21 +70,45 @@ class _InteractiveTerminalState extends State<InteractiveTerminal> {
     _controller.clear();
   }
 
+  void _goToNavig() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const Navig()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // Fullscreen terminal background
+      backgroundColor: Colors.black,
+
+      // ✅ AppBar with return button
+      appBar: AppBar(
+        title: const Text(
+          "Interactive Terminal",
+          style: TextStyle(color: Colors.greenAccent, fontFamily: "monospace"),
+        ),
+        backgroundColor: Colors.black,
+        elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.home, color: Colors.greenAccent),
+            tooltip: "Return to Navigation",
+            onPressed: _goToNavig,
+          ),
+        ],
+      ),
+
       body: GestureDetector(
         onTap: () => _focusNode.requestFocus(),
         child: Center(
-          // <-- Center the entire terminal block
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 600),
             child: Container(
               padding: const EdgeInsets.all(16),
               color: Colors.black,
               child: Column(
-                mainAxisSize: MainAxisSize.min, // Shrink-wrap terminal
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Scrollable terminal output
