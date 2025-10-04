@@ -2,7 +2,9 @@
 // ignore_for_file: prefer_const_constructors, file_names
 
 import 'package:asteroidsim/asteroids.dart';
+import 'package:asteroidsim/dramatic.dart';
 import 'package:asteroidsim/r3f.dart';
+import 'package:asteroidsim/terminal.dart';
 import 'package:asteroidsim/webview1.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -36,6 +38,8 @@ class _NavigState extends State<Navig> {
       case 3:
         body = const AsteroidListScreen();
         break;
+      case 4:
+        body = const InteractiveTerminal();
       default:
         body = const SizedBox.shrink();
     }
@@ -56,6 +60,7 @@ class _NavigState extends State<Navig> {
           GButton(icon: Icons.home, text: 'Three'),
           GButton(icon: Icons.calendar_month, text: 'Cesium'),
           GButton(icon: Icons.calendar_month, text: 'R3F'),
+          GButton(icon: Icons.numbers, text: 'asteroids'),
           GButton(icon: Icons.numbers, text: 'asteroids'),
         ],
         selectedIndex: _selectedIndex,
