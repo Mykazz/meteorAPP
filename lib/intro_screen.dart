@@ -23,13 +23,13 @@ class _IntroScreenState extends State<IntroScreen> {
     super.initState();
 
     // Step through messages every 3 seconds
-    Timer.periodic(const Duration(seconds: 3), (timer) {
+    Timer.periodic(const Duration(seconds: 1), (timer) {
       if (currentIndex < messages.length - 1) {
         setState(() => currentIndex++);
       } else {
         timer.cancel();
         // After last message -> navigate to Navig()
-        Future.delayed(const Duration(seconds: 2), () {
+        Future.delayed(const Duration(seconds: 1), () {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (_) => const Navig()),
@@ -45,7 +45,7 @@ class _IntroScreenState extends State<IntroScreen> {
       backgroundColor: Colors.black,
       body: Center(
         child: AnimatedSwitcher(
-          duration: const Duration(seconds: 2),
+          duration: const Duration(seconds: 1),
           transitionBuilder: (Widget child, Animation<double> animation) {
             return FadeTransition(
               opacity: animation,

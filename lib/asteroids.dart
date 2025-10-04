@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:asteroidsim/navigation.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
@@ -66,12 +67,10 @@ class Asteroid {
     );
   }
 
-  // Fallback empty asteroid
   factory Asteroid.empty(String name) {
     return Asteroid(fullName: name, success: false);
   }
 
-  // Convert to JSON for API call
   Map<String, dynamic> toApiJson() {
     return {
       "fullName": fullName,
@@ -118,7 +117,7 @@ Future<List<Map<String, String>>> fetchAsteroidIds() async {
 }
 
 // -----------------------------------------------------------
-// Step 2: Fetch details with retry + fallback
+// Step 2: Fetch details
 // -----------------------------------------------------------
 Future<Asteroid> fetchAsteroidDetails(String spkid, String name) async {
   Future<Asteroid> tryFetch(String query, String label) async {
@@ -167,8 +166,7 @@ Future<List<Asteroid>> fetchAsteroids() async {
 // API CALL: Send asteroid to FastAPI
 // -----------------------------------------------------------
 Future<Map<String, dynamic>> sendAsteroidToApi(Asteroid asteroid) async {
-  final url = Uri.parse("http://10.0.2.2:8000/v1/simulate");
-  // 👈 your FastAPI
+  final url = Uri.parse("http://10.0.2.2:8000/v1/simulate"); // Android emulator
   final response = await http.post(
     url,
     headers: {"Content-Type": "application/json"},
@@ -204,6 +202,13 @@ class AsteroidListScreen extends StatelessWidget {
     }
   }
 
+  void _goToNavig(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const Navig()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -215,6 +220,13 @@ class AsteroidListScreen extends StatelessWidget {
         ),
         backgroundColor: Colors.black,
         elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.home, color: Colors.greenAccent),
+            tooltip: "Return to Navigation",
+            onPressed: () => _goToNavig(context),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -312,6 +324,13 @@ class ApiResponseScreen extends StatelessWidget {
   final Map<String, dynamic> response;
   const ApiResponseScreen({super.key, required this.response});
 
+  void _goToNavig(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const Navig()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final prettyJson = const JsonEncoder.withIndent("  ").convert(response);
@@ -324,6 +343,13 @@ class ApiResponseScreen extends StatelessWidget {
           style: TextStyle(color: Colors.greenAccent, fontFamily: "monospace"),
         ),
         backgroundColor: Colors.black,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.home, color: Colors.greenAccent),
+            tooltip: "Return to Navigation",
+            onPressed: () => _goToNavig(context),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -341,5 +367,9 @@ class ApiResponseScreen extends StatelessWidget {
 }
 
 // -----------------------------------------------------------
-// Main
+// Dummy Navig screen
+// -----------------------------------------------------------
+
+// -----------------------------------------------------------
+// Main Entry Point
 // -----------------------------------------------------------

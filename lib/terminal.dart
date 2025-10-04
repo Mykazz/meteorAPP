@@ -1,3 +1,6 @@
+import 'package:asteroidsim/asteroids.dart';
+import 'package:asteroidsim/biggest.dart';
+import 'package:asteroidsim/closest.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:asteroidsim/navigation.dart'; // your main app page
@@ -23,19 +26,30 @@ class _InteractiveTerminalState extends State<InteractiveTerminal> {
     });
 
     switch (cmd.toLowerCase().trim()) {
-      case "start":
+      case "near":
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => const Navig()),
+          MaterialPageRoute(builder: (_) => const ClosestAsteroidsScreen()),
+        );
+        break;
+      case "big":
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const BiggestAsteroidsScreen()),
         );
         break;
       case "help":
         setState(() {
           output.addAll([
-            "Available commands:",
-            " - start : launch simulation",
-            " - help  : show this list",
-            " - exit  : quit terminal",
+            "Commands for help",
+            " - danger : lists dangerous asteroids",
+            " - big    : lists biggest asteroids",
+            " - near    : lists near earth asteroids",
+            " - random : lists random asteroids",
+            " - mymath : you create your own asteroid",
+            " - start  : launch simulation",
+            " - help   : show this list",
+            " - story   : go to story mode",
           ]);
         });
         break;

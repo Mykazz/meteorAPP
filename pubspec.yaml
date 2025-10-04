@@ -45,6 +45,7 @@ flutter:
     - assets/cesium_demo/Cesium/Assets/Textures/NaturalEarthII/
     - assets/r3f_demo/
     - assets/r3f_demo/assets/
-    - assets/r3f_demo/Textures/planet.jpg
-    - assets/assets/r3f_demo/textures/planet.jpg
+    - assets/assets/
+    - assets/
+
     # Additional Cesium assets (recommended)
