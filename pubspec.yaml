@@ -46,7 +46,7 @@ flutter:
     - assets/r3f_demo/
     - assets/r3f_demo/assets/
     - assets/assets/
-    - assets/
+    - assets/assets/data/
     
 
     # Additional Cesium assets (recommended)

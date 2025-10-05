@@ -2,6 +2,7 @@ import 'package:asteroidsim/asteroids.dart';
 import 'package:asteroidsim/biggest.dart';
 import 'package:asteroidsim/chooseside.dart';
 import 'package:asteroidsim/closest.dart';
+import 'package:asteroidsim/r3f.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:asteroidsim/navigation.dart'; // your main app page
@@ -36,7 +37,7 @@ class _InteractiveTerminalState extends State<InteractiveTerminal> {
       case "big":
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => const BiggestAsteroidsScreen()),
+          MaterialPageRoute(builder: (_) => const R3F()),
         );
         break;
       case "help":
