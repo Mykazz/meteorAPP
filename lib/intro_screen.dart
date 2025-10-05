@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:asteroidsim/adventurermenu.dart';
 import 'package:flutter/material.dart';
 import 'package:asteroidsim/navigation.dart';
 
@@ -32,7 +33,7 @@ class _IntroScreenState extends State<IntroScreen> {
         Future.delayed(const Duration(seconds: 1), () {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (_) => const Navig()),
+            MaterialPageRoute(builder: (_) => const AdventurerPage()),
           );
         });
       }

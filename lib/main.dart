@@ -1,3 +1,4 @@
+import 'package:asteroidsim/chooseside.dart';
 import 'package:asteroidsim/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: IntroScreen(), // Start with intro
+      home: ChooseSide(), // Start with intro
     );
   }
 }

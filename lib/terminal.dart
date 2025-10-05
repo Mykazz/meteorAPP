@@ -1,5 +1,6 @@
 import 'package:asteroidsim/asteroids.dart';
 import 'package:asteroidsim/biggest.dart';
+import 'package:asteroidsim/chooseside.dart';
 import 'package:asteroidsim/closest.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -73,7 +74,7 @@ class _InteractiveTerminalState extends State<InteractiveTerminal> {
   void _goToNavig() {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (_) => const Navig()),
+      MaterialPageRoute(builder: (_) => const ChooseSide()),
     );
   }
 

@@ -1,4 +1,5 @@
 import 'package:asteroidsim/adventurermenu.dart';
+import 'package:asteroidsim/intro_screen.dart';
 import 'package:asteroidsim/terminal.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class ChooseSide extends StatelessWidget {
             // 👈 LEFT side tapped → Adventurer
             Navigator.of(
               context,
-            ).push(MaterialPageRoute(builder: (_) => const AdventurerPage()));
+            ).push(MaterialPageRoute(builder: (_) => const IntroScreen()));
           } else {
             // 👉 RIGHT side tapped → Advanced
             Navigator.of(context).push(

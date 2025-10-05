@@ -1,3 +1,4 @@
+import 'package:asteroidsim/chooseside.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:asteroidsim/navigation.dart'; // ✅ for Navig screen
@@ -109,7 +110,7 @@ class _AdventurerPageState extends State<AdventurerPage> {
   void _goToNavig() {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (_) => const Navig()),
+      MaterialPageRoute(builder: (_) => const ChooseSide()),
     );
   }
 
